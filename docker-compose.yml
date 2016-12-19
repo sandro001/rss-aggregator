@@ -1,0 +1,21 @@
+version: '2'
+services:
+  db:
+    image: 'mysql:5.7'
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=59722795
+      - MYSQL_DATABASE=rss_aggregator
+  server:
+    build: .
+    links:
+      - "db"
+    environment:
+      - DATABASE_HOST=db
+    ports:
+      - "1337:1337"
+    command: bash -c "bash ./wait-for-it.sh db:3306 -t 300 && sails lift"
+    depends_on:
+      - db
+    restart: always
