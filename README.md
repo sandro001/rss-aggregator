@@ -25,7 +25,7 @@
 
 Для цього необхідно виконати команду 
 
-`docker run -v [шлях до папки на вашій host-машині]:/home/apps/rss-aggregator/www aggregator grunt buildProd`
+`docker run -v [`шлях до папки на вашій host-машині`]:/home/apps/rss-aggregator/www aggregator grunt buildProd`
 
 #### 3-тє завдання
 
