@@ -1,0 +1,176 @@
+@import "fonts.css";
+@import "colors.css";
+
+/** {*/
+  /*outline: 1px solid red;*/
+/*}*/
+
+.buttons-nav {
+  display: inline-block;
+  margin: 13px 20px 13px;
+}
+
+.myContainer {
+  width: 100%;
+}
+
+.title {
+  color: var(--maroon);
+  font-size: 30px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.registerForm, .loginForm {
+  position: relative;
+  display: block;
+  max-width: 392px;
+  width: 100%;
+  margin: 12px auto 0;
+}
+
+.link-login {
+  color: var(--light-green);
+}
+
+/*BUTTONS*/
+.btnLogin, .btnSignUp {
+  color: #fff;
+  border-radius: 4px;
+}
+
+.btnLogin:hover,  .btnLogin:active,  .btnLogin:focus,
+.btnSignUp:hover, .btnSignUp:active, .btnSignUp:focus {
+  color: #fff;
+}
+
+.btnLogin {
+  background-color: var(--light-green);
+}
+
+.btnSignUp {
+  background-color: var(--light-orange);
+}
+/*END BUTTONS*/
+
+/*NEWS CHANNEL*/
+.newsChannel {
+  font-family: Roboto-Regular;
+}
+
+.itemContent {
+  border: 1px solid var(--middle-gray);
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.itemTitle {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.itemLink {
+  color: var(--maroon-60pc);
+}
+
+.itemLink:hover {
+  color: var(--light-green);
+  text-decoration: none;
+}
+
+.itemDescription {
+  display: inline-block;
+}
+
+.info {
+  padding: 0;
+}
+
+.info li {
+  display: inline;
+}
+
+.hourCreate:before, .hourUpdate:before {
+  content: "•";
+  margin: 0px 10px;
+}
+
+.tagSet {
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.tag {
+  border: 1px solid var(--warm-gray);
+  border-radius: 4px;
+  display: inline-block;
+  margin: 3px 2px;
+  vertical-align: middle;
+}
+
+.tagContent {
+  padding: 5px;
+}
+
+.tagName, .fa-times {
+  display: inline-block;
+}
+
+.tagName {
+  color: var(--maroon-60pc);
+  font-size: 14px;
+  line-height: 1;
+  margin: 5px 10px 0 10px;
+  max-width: 110px;
+  overflow: hidden;
+}
+
+.tag .fa-times {
+  color: var(--warm-gray);
+  float: right;
+  font-size: 12px;
+}
+/*END NEWS CHANNEL*/
+
+.newTag {
+  border: 1px solid var(--cornflower-blue);
+  height: 37px;
+  padding: 10px;
+  width: 150px;
+}
+
+#addBtn {
+  background-color: var(--cornflower-blue);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+  font-family: Roboto-Bold;
+  font-size: 20px;
+  vertical-align: middle;
+  width: 30px;
+}
+
+#addBtn:focus, .newTag:focus, .btnLogin:focus, .btnSignUp:focus {
+  outline: 0;
+}
+
+#addBtn:disabled {
+  background-color: var(--cornflower-blue-50pc);
+}
+/* FOOTER*/
+.footerCase {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.footerCase > span {
+  color: var(--maroon-60pc);
+}
+
+.link-login:hover {
+  text-decoration: none;
+  color: var(--light-green);
+}
+/*END FOOTER*/

@@ -1,153 +1,351 @@
 <!DOCTYPE html>
 <html ng-app="App" >
-  <head>
-    <title>New Sails App</title>
+<head>
+  <title>RSS-Aggregator</title>
+  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=windows-1251">
 
-    <meta http-equiv="content-type" content="text/html; charset=windows-1251">
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="/styles/bootstrap.min.css" rel="stylesheet">
+  <link href="/styles/fonts.css">
+  <link href="/styles/main.css" rel="stylesheet">
+  <link href="/styles/styles.css" rel="stylesheet">
+  <link href="/styles/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
 
-    <link href="/styles/bootstrap.min.css" rel="stylesheet">
+<body ng-controller="AppCtrl">
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
-    <!-- MetisMenu CSS -->
-    <link href="/styles/main.css" rel="stylesheet">
-    <link href="/styles/font-awesome.min.css" rel="stylesheet" type="text/css">
-  </head>
-
-  <body ng-controller="AppCtrl">
-
-
-    <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
-
-    <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-      <ul class="sidebar">
-        <li class="sidebar-main">
-          <a ng-click="toggleSidebar()">
-            Dashboard
-            <span class="menu-icon glyphicon glyphicon-transfer"></span>
-          </a>
-        </li>
-        <li class="sidebar-title"><span>NAVIGATION</span></li>
-        <li class="sidebar-list">
-          <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
-        </li>
-        <li class="sidebar-list">
-          <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
-        </li>
-      </ul>
-      <div class="sidebar-footer">
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular" target="_blank">
-            Github
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
-            About
-          </a>
-        </div>
-        <div class="col-xs-4">
-          <a href="#">
-            Support
-          </a>
-        </div>
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar">
+      <li class="sidebar-main">
+        <a ng-click="toggleSidebar()">
+          Dashboard
+          <span class="menu-icon glyphicon glyphicon-transfer"></span>
+        </a>
+      </li>
+      <li class="sidebar-title"><span>NAVIGATION</span></li>
+      <li class="sidebar-list">
+        <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+      </li>
+      <li class="sidebar-list">
+        <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="col-xs-4">
+        <a href="https://github.com/rdash/rdash-angular" target="_blank">
+          Github
+        </a>
+      </div>
+      <div class="col-xs-4">
+        <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
+          About
+        </a>
+      </div>
+      <div class="col-xs-4">
+        <a href="#">
+          Support
+        </a>
       </div>
     </div>
-    <!-- End Sidebar -->
+  </div>
+  <!-- End Sidebar -->
 
-    <div id="content-wrapper">
-      <div class="page-content">
+  <div id="content-wrapper">
+    <div class="page-content">
 
-        <!-- Header Bar -->
-        <div class="row header" ng-controller="HeaderCtrl">
-          <div class="col-xs-12">
-            <div class="user pull-right">
-              <div ng-if="$root.authorized" class="item dropdown" uib-dropdown>
-                <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                  <img src="img/avatar.jpg">
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Joe Bloggs
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a href="#">
-                      Profile
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="link">
-                    <a href="#">
-                      Menu Item
-                    </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li class="link">
-                    <a ng-click="ctr.logout()">
-                      Logout
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div ng-if="!$root.authorized" class="item">
-                <button ui-sref="app.login" class="btn btn-success">LOGIN</button>
-                <button ui-sref="app.register" class="btn btn-success">REGISTER</button>
-              </div>
-              <!-- <div class="item dropdown" uib-dropdown>
-               <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
-                  <i class="fa fa-bell-o"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li class="dropdown-header">
-                    Notifications
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="#">Server Down!</a>
-                  </li>
-                </ul>
-              </div> -->
+      <!-- Header Bar -->
+      <div class="row header" ng-controller="HeaderCtrl">
+        <div class="col-xs-12">
+          <div class="user pull-right">
+
+            <div ng-if="$root.authorized" class="item dropdown" uib-dropdown>
+              <a href="#" class="dropdown-toggle" uib-dropdown-toggle>
+                <img src="img/avatar.jpg">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li class="dropdown-header">
+                  Joe Bloggs
+                </li>
+                <li class="divider"></li>
+                <li class="link">
+                  <a href="#">
+                    Profile
+                  </a>
+                </li>
+                <li class="link">
+                  <a href="#">
+                    Menu Item
+                  </a>
+                </li>
+                <li class="link">
+                  <a href="#">
+                    Menu Item
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li class="link">
+                  <a ng-click="ctr.logout()">
+                    Logout
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div class="meta">
-              <div class="page">
-                Dashboard
-              </div>
-              <div class="breadcrumb-links">
-                Home / Dashboard
-              </div>
+
+            <div ng-if="!$root.authorized" class="buttons-nav">
+              <button ui-sref="app.login" class="btnLogin btn">Login</button>
+              <button ui-sref="app.register" class="btnSignUp btn">Sign up</button>
+            </div>
+          </div>
+          <div class="meta">
+            <div class="page">
+              Dashboard
+            </div>
+            <div class="breadcrumb-links">
+              Home / Dashboard
             </div>
           </div>
         </div>
-        <!-- End Header Bar -->
+      </div>
+      <!-- End Header Bar -->
 
-        <!-- Main Content -->
-        <div ui-view></div>
+      <!-- Main Content -->
+      <div ui-view>
 
-      </div><!-- End Page Content -->
-    </div><!-- End Content Wrapper -->
-  </div><!-- End Page Wrapper -->
+        <!--<div class="myContainer container">-->
+        <!--<div class="row">-->
+
+        <!--<div class="newsChannel">-->
+
+        <!--&lt;!&ndash; newItem &ndash;&gt;-->
+        <!--<div class="itemContent col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">-->
+        <!--<h2 class="itemTitle">-->
+        <!--<a rel="external" class="itemLink" href="#" target="_blank">Манджукич теж поїде в Китай?</a>-->
+        <!--</h2>-->
+
+        <!--<ul class="info">-->
+        <!--<li class="date">12/23/2016</li>-->
+        <!--<li class="hourCreate">10:01 pm</li>-->
+        <!--<li class="hourUpdate">21:21 pm</li>-->
+        <!--</ul>-->
+
+        <!--<span class="itemDescription">Форвард збірної Хорватії і туринського Ювентуса Маріо Манджукич потрапив у поле зору китайського Бейцзин Гоань.</span>-->
+
+        <!--&lt;!&ndash;TAGS&ndash;&gt;-->
+        <!--<div class="tagSet">-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Політика</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Улыбка</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Пупсики</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Няш-мяш</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Эльфы</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Принцессы</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Цветочки</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--&lt;!&ndash;END TAGS&ndash;&gt;-->
+        <!--</div> &lt;!&ndash; End newItem &ndash;&gt;-->
+
+        <!--&lt;!&ndash; newItem &ndash;&gt;-->
+        <!--<div class="itemContent col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">-->
+        <!--<h2 class="itemTitle">-->
+        <!--<a rel="external" class="itemLink" href="#" target="_blank">Фондовий ринок США закрився зниженням</a>-->
+        <!--</h2>-->
+
+        <!--<ul class="info">-->
+        <!--<li class="date">12/23/2016</li>-->
+        <!--<li class="hourCreate">10:01 pm</li>-->
+        <!--<li class="hourUpdate">21:21 pm</li>-->
+        <!--</ul>-->
+
+        <!--<span class="itemDescription">Торги на біржах в США 21 грудня завершилися зниженням індексів, свідчать дані бірж.</span>-->
+
+        <!--&lt;!&ndash;TAGS&ndash;&gt;-->
+        <!--<div class="tagSet">-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Вкусняш</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Тортик</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Лав</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;END TAGS&ndash;&gt;-->
 
 
-        <!--SCRIPTS-->
-        <script src="/js/dependencies/jquery.js"></script>
-        <script src="/js/dependencies/angular.js"></script>
-        <script src="/js/dependencies/ocLazyLoad.min.js"></script>
-        <script src="/js/dependencies/angular-ui-router.min.js"></script>
-        <script src="/js/dependencies/angular-animate.min.js"></script>
-        <script src="/js/dependencies/ui-bootstrap-tpls-1.1.2.js"></script>
-        <script src="/js/dependencies/scriptjs.js"></script>
-        <script src="/js/app-routes.js"></script>
-        <script src="/js/app-ctrl.js"></script>
-        <script src="/js/controllers/HeaderCtrl.js"></script>
+        <!--&lt;!&ndash;<input class="tag newTag" type="text" ng-maxlength="60" name="tag" ng-model="tag">&ndash;&gt;-->
+        <!--&lt;!&ndash;<input id="addBtn" name="add" value="+" type="submit">&ndash;&gt;-->
 
+        <!--</div> &lt;!&ndash; End newItem &ndash;&gt;-->
 
-        <script src="/js/services/Api.service.js"></script>
-        <script src="/js/services/User.service.js"></script>
-    </body>
+        <!--&lt;!&ndash; newItem &ndash;&gt;-->
+        <!--<div class="itemContent col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">-->
+        <!--<h2 class="itemTitle">-->
+        <!--<a rel="external" class="itemLink" href="#" target="_blank">Ердоган заявив про зв'язок вбивці посла РФ з Гюленом</a>-->
+        <!--</h2>-->
+
+        <!--<ul class="info">-->
+        <!--<li class="date">12/23/2016</li>-->
+        <!--<li class="hourCreate">10:01 pm</li>-->
+        <!--<li class="hourUpdate">21:21 pm</li>-->
+        <!--</ul>-->
+
+        <!--<span class="itemDescription">Вбивця російського посла був членом FETÖ, переконаний президент Туреччини.</span>-->
+
+        <!--&lt;!&ndash;TAGS&ndash;&gt;-->
+        <!--<div class="tagSet">-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Любимки</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Цемчики</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Кис-кис</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="tag">-->
+        <!--<div class="tagContent">-->
+        <!--<p class="tagName">Мур</p>-->
+        <!--<sup><i class="fa fa-times" aria-hidden="true"></i> </sup>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</div> &lt;!&ndash;END TAGS&ndash;&gt;-->
+        <!--</div> &lt;!&ndash; End newItem &ndash;&gt;-->
+
+        <!--</div> &lt;!&ndash; End newsChannel &ndash;&gt;-->
+
+        <!--</div> &lt;!&ndash; End row &ndash;&gt;-->
+        <!--</div> &lt;!&ndash; End container &ndash;&gt;-->
+
+        <div ng-controller="NewsCtrl">
+          <div class="newsChannel" ng-repeat="article in news">
+
+            <div class="itemContent col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+              <h2 class="itemTitle">
+                <a rel="external" class="itemLink" href="{{article.link}}" target="_blank">{{article.title}}</a>
+              </h2>
+
+              <ul class="info">
+                <li class="date">{{article.publication_date}}</li>
+                <li class="hourCreate">{{article.createdAt}}</li>
+                <li class="hourUpdate">{{article.updatedAt}}</li>
+              </ul>
+
+              <span class="itemDescription">{{article.description}}</span>
+
+              <!--Tags in item of news-->
+              <div class="tagSet" ng-repeat="tag in article.tags">
+
+                <!--Single tag-->
+                <div class="tag">
+                  <div class="tagContent">
+                    <p class="tagName">{{tag.name}}</p>
+                    <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                  </div>
+                </div> <!-- End tag-->
+              </div> <!--  End tagSet-->
+
+              <input class="tag newTag" type="text" ng-maxlength="60" name="tag" ng-model="newTag">
+              <input id="addBtn" name="add" value="+" type="submit" ng-click="showNewTag($index)">
+
+            </div> <!-- End itemContent-->
+          </div> <!-- End newsChannel-->
+        </div>
+      </div>
+    </div><!-- End Page Content -->
+  </div><!-- End Content Wrapper -->
+</div><!-- End Page Wrapper -->
+
+<!--SCRIPTS-->
+<script src="/js/dependencies/jquery.js"></script>
+<script src="/js/dependencies/angular.js"></script>
+<script src="/js/dependencies/ocLazyLoad.min.js"></script>
+<script src="/js/dependencies/angular-ui-router.min.js"></script>
+<script src="/js/dependencies/angular-animate.min.js"></script>
+<script src="/js/dependencies/ui-bootstrap-tpls-1.1.2.js"></script>
+
+<script src="/js/custom.js"> </script>
+<script src="/js/dependencies/scriptjs.js"></script>
+
+<script src="/js/app-routes.js"></script>
+<script src="/js/app-ctrl.js"></script>
+
+<script src="/js/controllers/NewsCtrl.js"></script>
+<script src="/js/controllers/HeaderCtrl.js"></script>
+<script src="/js/services/Api.service.js"></script>
+<script src="/js/services/User.service.js"></script>
+</body>
 </html>
