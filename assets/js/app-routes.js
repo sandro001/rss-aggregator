@@ -59,6 +59,18 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$urlMa
                 templateUrl: '/templates/register.html',
                 controller:'RegisterCtrl',
                 resolve: load(['/js/controllers/UserCtrl.js'])
+            })
+            .state('app.sources', {
+                url: '/sources',
+                templateUrl: '/templates/sources.tpl.html',
+                controller:'SourcesCtrl',
+                resolve: load(['/js/controllers/SourceCtrl.js'])
+            })
+            .state('app.sources_add', {
+                url: '/sources/add',
+                templateUrl: '/templates/addSource.tpl.html',
+                controller:'AddSourceCtrl',
+                resolve: load(['/js/controllers/SourceCtrl.js'])
             });
 
         function load(srcs, callback) {

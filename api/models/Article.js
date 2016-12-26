@@ -17,6 +17,10 @@ module.exports = {
       type: 'DATE'
     },
 
+    source: {
+      type: 'INT'
+    },
+
     // news: {
     //   collection: 'news',
     //   via: 'source'

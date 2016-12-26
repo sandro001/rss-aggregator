@@ -10,48 +10,100 @@ module.exports = {
 
   getArticles: function(options) {
     var deferred = q.defer();
-    Article
-      .find()
-      .exec(function(err, articles) {
-        if (err) {
-          return deferred.reject(err);
-        }
-        async.waterfall([
+    async.waterfall([
 
-          // set tags
-          function(cb) {
-            if(options.tagsForUserId) {
-              async.each(articles, function(article, eachCb) {              
-                UserTagged.find({
-                  user: options.tagsForUserId,
-                  article: article.id
-                }).exec(function(err, associations) {
-                  if(!associations) {
-                    article['tags'] = [];
-                    return eachCb();
-                  } 
-                  var tagIds = [];
-                  associations.map(function(assoc) {
-                    tagIds.push(assoc.tag);
-                  })
-                  Tag.find({id: tagIds})
-                    .exec(function(err, tags) {
-                      article['tags'] = tags;
-                      eachCb();
-                    })
-                })
-              }, function finish(err) {
-                cb(null, articles);
+      // get sources user subscribed to
+      function(cb) {
+        var sources = [];
+        if(options.articlesForUserId) {
+          var searchObj = {
+            user: options.articlesForUserId
+          };
+          Subscribtion.find(searchObj).then(function(subscribtions){
+              subscribtions.map(function(subscribtion) {
+                sources.push(subscribtion.source);
               })
-            } else cb(null, articles);
-          }
-        ], function(err, articles) {
-          deferred.resolve(articles);
-        })
+              cb(null, sources);
+          }, function(err) {
+              sails.log.debug('Some error occured ' + err);
+              return cb(err);                    
+          });
+        } else {
+          cb(null, sources);
+        }
         
-        
-      })
+      },
 
+      // get articleIds by tags
+      function(sources, cb) {
+        var articleIds = [];
+        if(options.tags) {
+          var searchObj = {
+            user: options.tagsForUserId,
+            tag: options.tags
+          };
+          UserTagged.find(searchObj).then(function(mapps){
+              mapps.map(function(tagged) {
+                articleIds.push(tagged.article);
+              })
+              cb(null, sources, articleIds);
+          }, function(err) {
+              sails.log.debug('Some error occured ' + err);
+              return cb(err);                    
+          });
+        } else {
+          cb(null, sources, articleIds);
+        }
+        
+      },
+
+      // find articles
+      function(sources, articleIds, cb) {
+        var reqObj = {};
+        if(sources.length != 0) {
+          reqObj['source'] = sources;
+        }
+        if(articleIds && articleIds.length != 0) {
+          reqObj['id'] = articleIds;
+        }
+        Article.find(reqObj)
+          .exec(function(err, articles) {
+            if (err) {
+              return cb(err);
+            }
+            cb(null, articles);
+          })
+      },
+      // set tags
+      function(articles, cb) {
+        if(options.tagsForUserId) {
+          async.each(articles, function(article, eachCb) {              
+            UserTagged.find({
+              user: options.tagsForUserId,
+              article: article.id
+            }).exec(function(err, associations) {
+              if(!associations) {
+                article['tags'] = [];
+                return eachCb();
+              } 
+              var tagIds = [];
+              associations.map(function(assoc) {
+                tagIds.push(assoc.tag);
+              })
+              Tag.find({id: tagIds})
+                .exec(function(err, tags) {
+                  article['tags'] = tags;
+                  eachCb();
+                })
+            })
+          }, function finish(err) {
+            cb(null, articles);
+          })
+        } else cb(null, articles);
+      }
+    ], function(err, articles) {
+      deferred.resolve(articles);
+    });
     return deferred.promise;
   },
 
@@ -76,13 +128,13 @@ module.exports = {
         }
         sources.map(function(source) {
           feed(source.url, function(err, articles) {
-            console.log('ARTICLE', articles[0])
             async.each(articles, function(article, callback) {
                 var articleObj = {
                 title: encode(article.title ),
                 description: encode(article.content ),
                 link: encode(article.link),
                 publication_date: new Date(article.published),
+                source: source.id,
               };
 
               Article.findOrCreate({
@@ -156,6 +208,7 @@ module.exports = {
           },
           function(waterfallCb) {
             async.each(newTags, function(tag, cb) {
+              console.log('tag', tag)
               UserTagged.findOrCreate({
                 user: userId,
                 article: articleId,

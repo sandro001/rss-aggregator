@@ -1,0 +1,7 @@
+<div>
+	<div ng-repeat="source in ctr.sources">
+		<h3>{{source.name}}</h3>
+		<h4>{{source.url}}</h4>
+		<button ng-click="!source.mySubscr && ctr.subscribe(source)" ng-disabled="source.mySubscr">Subscribe</button>
+	</div>
+</div>

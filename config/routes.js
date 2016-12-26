@@ -44,7 +44,8 @@ module.exports.routes = {
 
   'PUT /api/users': 'UsersController.create',
 
-  // 'POST /api/sources': 'SourcesController.list',
+  'POST /api/sources': 'SourcesController.list',
+  'PUT /api/sources': 'SourcesController.create',
   // 'GET /api/sources/:sourceId': 'SourcesController.get',
   'PUT /api/sources/:sourceId/subscribe': 'SourcesController.subscribeToSource',
   // 'PUT /api/sources/:sourceId/subscribe': 'SourcesController.unsubscribeFromSource',

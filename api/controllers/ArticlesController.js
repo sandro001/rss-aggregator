@@ -12,7 +12,9 @@ module.exports = {
 function list(req, res) {
     var currentUserId = req.options.is_authorized ? req.session.user_id : null;
     var options = {
-        tagsForUserId: currentUserId
+        tagsForUserId: currentUserId,
+        articlesForUserId: currentUserId,
+        tags: req.body.tags
     }
     ArticleService.getArticles(options)
         .then(function(response) {
