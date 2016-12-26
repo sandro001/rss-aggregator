@@ -1,3 +1,6 @@
+@import "fonts.css";
+@import "colors.css";
+
 #content-wrapper {
   padding-left: 0;
   margin-left: 0;
@@ -20,7 +23,7 @@
 
 /**
  * Hamburg Menu
- * When the class of 'hamburg' is applied to the body tag of the document, 
+ * When the class of 'hamburg' is applied to the body tag of the document,
  * the sidebar changes it's style to attempt to mimic a menu on a phone app,
  * where the content is overlaying the content, rather than push it.
  */
@@ -56,15 +59,15 @@
  */
 .row.header {
   height: 60px;
-  background: #fff;
-  margin-bottom: 15px;
+  background: var(--whitey);
 }
 .row.header > div:last-child {
   padding-right: 0;
 }
 .row.header .meta .page {
   font-size: 17px;
-  padding-top: 11px;
+  padding: 16px 0;
+  margin-left: 20px;
 }
 .row.header .meta .breadcrumb-links {
   font-size: 10px;
@@ -183,19 +186,11 @@
   }
 }
 
-/* Fonts */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../fonts/montserrat-regular-webfont.eot');
-  src: url('../fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-regular-webfont.woff') format('woff'), url('../fonts/montserrat-regular-webfont.ttf') format('truetype'), url('../fonts/montserrat-regular-webfont.svg#montserratregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
-    font-family: 'Montserrat';
-    src: url('../fonts/montserrat-regular-webfont.svg') format('svg');
+    font-family: Roboto-Regular;
   }
+
   select {
     font-family: Arial, Helvetica, sans-serif;
   }
@@ -205,13 +200,13 @@ html {
   overflow-y: scroll;
 }
 body {
-  background: #f3f3f3;
-  font-family: "Montserrat";
+  background: #fff;
+  font-family: Roboto-Regular;
   color: #333333 !important;
 }
 .row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-left: 0;
+  margin-right: 0;
 }
 .row > div {
   margin-bottom: 15px;
@@ -287,7 +282,7 @@ ul.sidebar {
   overflow-y: auto;
 }
 ul.sidebar li a {
-  color: #fff;
+  color: var(--whitey);
   display: block;
   float: left;
   text-decoration: none;

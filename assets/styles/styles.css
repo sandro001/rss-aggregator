@@ -14,6 +14,10 @@
   width: 100%;
 }
 
+.control-label {
+  font-family: Roboto-Bold;
+}
+
 .title {
   color: var(--maroon);
   font-size: 30px;
@@ -21,7 +25,7 @@
   text-align: center;
 }
 
-.registerForm, .loginForm {
+.registerForm, .loginForm, .addNewsForm {
   position: relative;
   display: block;
   max-width: 392px;
@@ -34,13 +38,14 @@
 }
 
 /*BUTTONS*/
-.btnLogin, .btnSignUp {
+.btnLogin, .btnSignUp, .btnSearch {
   color: #fff;
   border-radius: 4px;
 }
 
 .btnLogin:hover,  .btnLogin:active,  .btnLogin:focus,
-.btnSignUp:hover, .btnSignUp:active, .btnSignUp:focus {
+.btnSignUp:hover, .btnSignUp:active, .btnSignUp:focus,
+.btnSearch:hover, .btnSearch:active, .btnSearch:focus {
   color: #fff;
 }
 
@@ -50,6 +55,15 @@
 
 .btnSignUp {
   background-color: var(--light-orange);
+}
+
+.btnSearch {
+  background-color: var(--peach);
+  width: 100%;
+}
+
+.btnSearch:hover {
+  background-color: var(--orange);
 }
 /*END BUTTONS*/
 
@@ -151,13 +165,71 @@
   width: 30px;
 }
 
-#addBtn:focus, .newTag:focus, .btnLogin:focus, .btnSignUp:focus {
+#addBtn:focus, .newTag:focus, .btnLogin:focus,
+.btnSignUp:focus, .btnSearch:focus {
   outline: 0;
 }
 
 #addBtn:disabled {
   background-color: var(--cornflower-blue-50pc);
 }
+
+/*TAGS SIDEBAR*/
+.sidebar-tags {
+  max-width: 250px;
+}
+
+.tagForm {
+  margin: 5px 5px 15px 5px;
+}
+
+.sidebar-tags .tagSet {
+  display: inline;
+}
+
+.sidebar-tags .tag {
+  border: 1px solid #b2bfdc;
+  margin: 5px 2px;
+}
+
+.sidebar-tags .tag:hover {
+  border: 1px solid #e99d1a;
+  background-color: #2d3e63;
+  cursor: pointer;
+}
+
+.sidebar-tags a {
+  text-decoration: none !important;
+  width: auto !important;
+  float: none !important;
+  display: inline !important;
+}
+
+.sidebar-tags .tagName, .sidebar-tags .fa-times {
+  color: #b2bfdc;
+}
+
+.sidebar-tags .tagContent {
+  color: var(--whitey);
+  padding: 3px;
+  font-size: 14px;
+  margin-left: -12px;
+}
+
+.sidebar-tags .tag .fa-times {
+  margin-left: -12px;
+}
+/*END TAGS SIDEBAR*/
+
+/*SEARCH BLOCK*/
+.searchForm {
+  height: 60px;
+  margin-bottom: 20px;
+  background-color: var(--cornflower-blue-20pc);
+}
+
+/*END SEARCH BLOCK*/
+
 /* FOOTER*/
 .footerCase {
   text-align: center;
