@@ -8,9 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="content-type" content="text/html; charset=windows-1251">
 
+
+  <link href="/styles/main.css" rel="stylesheet">
   <link href="/styles/bootstrap.min.css" rel="stylesheet">
   <link href="/styles/fonts.css">
-  <link href="/styles/main.css" rel="stylesheet">
   <link href="/styles/styles.css" rel="stylesheet">
   <link href="/styles/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
@@ -23,32 +24,86 @@
     <ul class="sidebar">
       <li class="sidebar-main">
         <a ng-click="toggleSidebar()">
-          Dashboard
-          <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          RSS-Aggregator
+          <span class="menu-icon fa fa-newspaper-o" aria-hidden="true"></span>
         </a>
       </li>
-      <li class="sidebar-title"><span>NAVIGATION</span></li>
+      <li class="sidebar-title"><span>PERSONAL FEEDS</span></li>
       <li class="sidebar-list">
-        <a href="#">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+        <a href="#">All <span class="menu-icon fa fa-bars" aria-hidden="true"></span></a>
       </li>
-      <li class="sidebar-list">
-        <a href="#/tables">Tables <span class="menu-icon fa fa-table"></span></a>
+
+      <li class="sidebar-tags">
+          <div class="row tagForm">
+            <!--Tags in item of news-->
+            <div class="tagSet">
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#пуся</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#Одуваньчик</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i></sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#цем</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#Мурчик</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#котик</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i></sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#зіронька</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#милаш</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+            </div> <!--  End tagSet-->
+          </div>
       </li>
     </ul>
     <div class="sidebar-footer">
-      <div class="col-xs-4">
-        <a href="https://github.com/rdash/rdash-angular" target="_blank">
+      <div class="col-xs-12">
+        <a href="#" target="_blank">
+          <i class="fa fa-github" aria-hidden="true"></i>
           Github
-        </a>
-      </div>
-      <div class="col-xs-4">
-        <a href="https://github.com/rdash/rdash-angular/blob/master/README.md" target="_blank">
-          About
-        </a>
-      </div>
-      <div class="col-xs-4">
-        <a href="#">
-          Support
         </a>
       </div>
     </div>
@@ -103,10 +158,7 @@
           </div>
           <div class="meta">
             <div class="page">
-              Dashboard
-            </div>
-            <div class="breadcrumb-links">
-              Home / Dashboard
+              Rss-Aggregator
             </div>
           </div>
         </div>
@@ -115,6 +167,82 @@
 
       <!-- Main Content -->
       <div ui-view>
+        <!--<div class="searchForm">-->
+        <!--<div class="row">-->
+
+        <!--<div class="form-group col-xs-4">-->
+        <!--&lt;!&ndash;<label for="tag" class="cols-sm-2 control-label">Tag of New</label>&ndash;&gt;-->
+        <!--<input type="text" class="form-control" id="tag"  placeholder="Tag" tabindex="1"/>-->
+        <!--</div>-->
+
+        <!--<div class="form-group col-xs-4">-->
+        <!--&lt;!&ndash;<label for="url" class="cols-sm-2 control-label">Url</label>&ndash;&gt;-->
+        <!--<input type="url" class="form-control" name="url" id="url"  placeholder="Url" tabindex="2"/>-->
+        <!--</div>-->
+        <!--<div class="form-group col-xs-4">-->
+        <!--<button class="btnSearch btn" type="button" ng-click="search()" tabindex="3">Search for News</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="myContainer">
+          <div class="row">
+
+            <header class="panel-heading">
+              <h1 class="title">Add your favourite News</h1>
+            </header>
+
+            <div class="addNewsForm">
+              <div class="form-group col-xs-12">
+                <label for="title" class="cols-sm-2 control-label">Title</label>
+                <input type="text" class="form-control" id="title"  placeholder="Title" tabindex="1"/>
+              </div>
+
+              <div class="form-group col-xs-12">
+                <label for="url" class="cols-sm-2 control-label">Url</label>
+                <input type="url" class="form-control" name="url" id="url"  placeholder="Url" tabindex="2"/>
+              </div>
+              <div class="form-group col-xs-12">
+                <button class="btnSearch btn btn-lg" type="button" ng-click="search()" tabindex="3">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div ng-controller="NewsCtrl">
+          <div class="newsChannel" ng-repeat="article in news">
+
+            <div class="itemContent col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+              <h2 class="itemTitle">
+                <a rel="external" class="itemLink" href="{{article.link}}" target="_blank">{{article.title}}</a>
+              </h2>
+
+              <ul class="info">
+                <li class="date">{{article.publication_date}}</li>
+                <li class="hourCreate">{{article.createdAt}}</li>
+                <li class="hourUpdate">{{article.updatedAt}}</li>
+              </ul>
+
+              <span class="itemDescription">{{article.description}}</span>
+
+              <!--Tags in item of news-->
+              <div class="tagSet" ng-repeat="tag in article.tags">
+
+                <!--Single tag-->
+                <div class="tag">
+                  <div class="tagContent">
+                    <p class="tagName">#{{tag.name}}</p>
+                    <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                  </div>
+                </div> <!-- End tag-->
+              </div> <!--  End tagSet-->
+
+              <input class="tag newTag" type="text" ng-maxlength="60" name="tag" ng-model="newTag">
+              <input id="addBtn" name="add" value="+" type="submit" ng-click="showNewTag($index)">
+
+            </div> <!-- End itemContent-->
+          </div> <!-- End newsChannel-->
+        </div>
       </div>
     </div><!-- End Page Content -->
   </div><!-- End Content Wrapper -->

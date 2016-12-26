@@ -1,4 +1,5 @@
 (function(){
+
   angular.module('App').controller('NewsCtrl', ['$scope', 'ApiService', function($scope, ApiService) {
     $scope.ctr = {
       articles: [],
