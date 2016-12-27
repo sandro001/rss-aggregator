@@ -1,5 +1,23 @@
-<div>
-	<input ng-model="ctr.sourceName" placeholder="name">
-	<input ng-model="ctr.sourceUrl" placeholder="url">
-	<button ng-click="ctr.addSource()">Add</button>
-</div>
+<div class="myContainer">
+          <div class="row">
+
+            <header class="panel-heading">
+              <h1 class="title">Add your favourite News</h1>
+            </header>
+
+            <div class="addNewsForm">
+              <div class="form-group col-xs-12">
+                <label for="title" class="cols-sm-2 control-label">Title</label>
+                <input type="text" class="form-control" id="title" ng-model="ctr.sourceName" placeholder="Title" tabindex="1"/>
+              </div>
+
+              <div class="form-group col-xs-12">
+                <label for="url" class="cols-sm-2 control-label">Url</label>
+                <input type="url" ng-model="ctr.sourceUrl" class="form-control" name="url" id="url"  placeholder="Url" tabindex="2"/>
+              </div>
+              <div class="form-group col-xs-12">
+                <button class="btnSearch btn btn-lg" type="button" ng-click="ctr.addSource()" tabindex="3">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
