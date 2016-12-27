@@ -1,9 +1,23 @@
 @import "fonts.css";
 @import "colors.css";
 
-/** {*/
-  /*outline: 1px solid red;*/
-/*}*/
+.blue, .orange, .green, .cornflower {
+  font-style: normal;
+  font-family: Roboto-Medium;
+  font-size: 20px;
+}
+.blue {
+  color: var(--turquoise);
+}
+.orange {
+  color: var(--orange);
+}
+.green {
+  color: var(--light-green);
+}
+.cornflower {
+  color: var(--cornflower-blue);
+}
 
 .buttons-nav {
   display: inline-block;
@@ -38,14 +52,17 @@
 }
 
 /*BUTTONS*/
-.btnLogin, .btnSignUp, .btnSearch {
+.btnLogin, .btnSignUp, .btnSearch, .btnRefresh, .btnAddSources, .btnSubscribe {
   color: #fff;
   border-radius: 4px;
 }
 
 .btnLogin:hover,  .btnLogin:active,  .btnLogin:focus,
 .btnSignUp:hover, .btnSignUp:active, .btnSignUp:focus,
-.btnSearch:hover, .btnSearch:active, .btnSearch:focus {
+.btnSearch:hover, .btnSearch:active, .btnSearch:focus,
+.btnRefresh:hover, .btnRefresh:active, .btnRefresh:focus,
+.btnAddSources:hover, .btnAddSources:active, .btnAddSources:focus,
+.btnSubscribe:hover, .btnSubscribe:active, .btnSubscribe:focus {
   color: #fff;
 }
 
@@ -57,13 +74,49 @@
   background-color: var(--light-orange);
 }
 
+.btnLogin:hover {
+  background-color: var(--light-green-70pc);
+}
+
+.btnSignUp:hover {
+  background-color: var(--light-orange-70pc);
+}
+
 .btnSearch {
   background-color: var(--peach);
   width: 100%;
 }
 
+.btnRefresh {
+  background-color: var(--turquoise);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.btnRefresh:hover {
+  background-color: var(--turquoise-70pc);
+}
+
 .btnSearch:hover {
   background-color: var(--orange);
+}
+
+.btnAddSources {
+  background-color: var(--cornflower-blue);
+}
+
+.btnAddSources:hover {
+  background-color: var(--cornflower-blue-70pc);
+}
+
+.btnSubscribe {
+  background-color: var(--light-green);
+  float: right;
+  margin-top: 10px;
+  margin-right: -70px;
+}
+
+.btnSubscribe:hover {
+  background-color: var(--light-green-70pc);
 }
 /*END BUTTONS*/
 
@@ -133,7 +186,7 @@
 .tagName {
   color: var(--maroon-60pc);
   font-size: 14px;
-  line-height: 1;
+  line-height: 1.1;
   margin: 5px 10px 0 10px;
   max-width: 110px;
   overflow: hidden;
@@ -223,12 +276,110 @@
 
 /*SEARCH BLOCK*/
 .searchForm {
-  height: 60px;
   margin-bottom: 20px;
-  background-color: var(--cornflower-blue-20pc);
+  margin: 0 40px;
 }
 
+.searchForm .tagSet {
+  margin-top: 0;
+}
+
+#search {
+  position: relative;
+  font-size: 18px;
+}
+
+#search label {
+  position: absolute;
+  left: 17px;
+  top: 27px;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.fa-search:before {
+  content: "\f002";
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#search #search-input, #search .hint {
+  padding-left: 43px;
+  padding-right: 43px;
+  border-radius: 23px;
+}
+
+.input-lg {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+#search #search-clear {
+  text-decoration: none;
+  position: absolute;
+  right: 18px;
+  top: 54px;
+  color: #b3b3b3;
+}
+
+#search #search-clear .fa-times-circle:before {
+  content: "\f057";
+}
 /*END SEARCH BLOCK*/
+
+.blockRefresh {
+  margin: 0 40px;
+}
+
+.addSourceBlock {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.itemName {
+  color: var(--maroon);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.itemUrl {
+  color: var(--maroon-70pc);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 /* FOOTER*/
 .footerCase {

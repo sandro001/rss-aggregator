@@ -1,10 +1,21 @@
-<div>
-	<button ui-sref="app.sources_add">Add source</button>
+<div class="col-xs-12 center-block addSourceBlock">
+  <button class="btnAddSources btn btn-lg" ui-sref="app.sources_add">Add Source</button>
 </div>
-<div>
-	<div ng-repeat="source in ctr.sources">
-		<h3>{{source.name}}</h3>
-		<h4>{{source.url}}</h4>
-		<button ng-click="!source.mySubscr && ctr.subscribe(source)" ng-disabled="source.mySubscr">Subscribe</button>
-	</div>
+
+<div class="col-xs-12" ng-repeat="source in ctr.sources">
+  <div class="row">
+    <div class="itemContent col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+      <div class="col-md-8 col-sm-8">
+        <h3 class="itemName">{{source.name}}</h3>
+        <h4 class="itemUrl">
+          <a rel="external" class="itemLink" href="{{source.url}}" target="_blank">{{source.url}}</a>
+        </h4>
+      </div>
+      <div class="col-md-3 col-sm-3">
+        <button class="btnSubscribe btn btn-lg"
+                ng-click="!source.mySubscr && ctr.subscribe(source)"
+                ng-disabled="source.mySubscr">Subscribe</button>
+      </div>
+    </div>
+  </div>
 </div>
