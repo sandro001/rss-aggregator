@@ -12,7 +12,7 @@
         this.getArticles = function (data, cb) {
             var reqStr = '/api/articles';
             
-            $http.post(API_DOMAIN+reqStr)
+            $http.post(API_DOMAIN+reqStr, data)
                 .then(function (res, status, headers, config) {
                     if(cb) cb(null, res.data);
                 })
@@ -118,6 +118,15 @@
             var reqStr = '/api/tags/my';
             
             $http.post(API_DOMAIN+reqStr)
+                .then(function (res, status, headers, config) {
+                    if(cb) cb(null, res.data);
+                })
+                .catch(cb);
+        }
+        this.searchTags = function(data, cb) {
+            var reqStr = '/api/tags';
+            
+            $http.post(API_DOMAIN+reqStr, data)
                 .then(function (res, status, headers, config) {
                     if(cb) cb(null, res.data);
                 })

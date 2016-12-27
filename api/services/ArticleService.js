@@ -36,8 +36,8 @@ module.exports = {
 
       // get articleIds by tags
       function(sources, cb) {
-        var articleIds = [];
-        if(options.tags) {
+        if(options.tags && options.tags.length != 0) {
+          var articleIds = [];
           var searchObj = {
             user: options.tagsForUserId,
             tag: options.tags
@@ -46,13 +46,15 @@ module.exports = {
               mapps.map(function(tagged) {
                 articleIds.push(tagged.article);
               })
+
+          console.log('articleIds', articleIds)
               cb(null, sources, articleIds);
           }, function(err) {
               sails.log.debug('Some error occured ' + err);
               return cb(err);                    
           });
         } else {
-          cb(null, sources, articleIds);
+          cb(null, sources, null);
         }
         
       },
@@ -63,7 +65,7 @@ module.exports = {
         if(sources.length != 0) {
           reqObj['source'] = sources;
         }
-        if(articleIds && articleIds.length != 0) {
+        if(articleIds) {
           reqObj['id'] = articleIds;
         }
         reqObj['sort'] = 'publication_date DESC'

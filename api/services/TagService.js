@@ -62,4 +62,18 @@ module.exports = {
     });
     return deferred.promise;
   },
+
+  searchTags: function (data) {
+    var deferred = q.defer();
+
+    Tag.find({
+      name: { contains: data.name }
+    }).exec(function(err, tags) {
+      if(err) {
+        return deferred.reject(err);
+      }
+      deferred.resolve(tags)
+    })  
+    return deferred.promise;
+  },
 }

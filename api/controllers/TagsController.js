@@ -2,6 +2,7 @@
 module.exports = {
     create: create,
     my_tags: my_tags,
+    search: search,
 }
 
 function create(req, res) {
@@ -23,9 +24,22 @@ function my_tags(req, res) {
         return res.json(200, { error: "You should be logged in to view this api" });
     }
     var reqObj = {
-    	userId: currentUserId
+        userId: currentUserId
     };
     TagService.getUserTags(reqObj)
+        .then(function(response) {
+            return res.json(200, { success: 'Success', results: response });
+        }, function(err) {
+            return res.json(200, { error: err });
+        })
+}
+
+
+function search(req, res) {
+    var reqObj = {
+    	name: req.body.search || '',
+    };
+    TagService.searchTags(reqObj)
         .then(function(response) {
             return res.json(200, { success: 'Success', results: response });
         }, function(err) {
