@@ -89,10 +89,7 @@
                     })
                     .catch(function(err) {
                         if(err.status == -1) {
-                            ModalService.showConnectionModal();
-                            $timeout(function() {
-                                doReq();
-                            }, 2000)
+                            exponentialBackoff(doReq)
                         } else {
                             cb(err);
                         }
@@ -144,6 +141,15 @@
                     if(cb) cb(null, res.data);
                 })
                 .catch(cb);
+        }
+
+        var exponentialTimeout = 2000;
+        function exponentialBackoff(fn) {
+            ModalService.showConnectionModal();
+            $timeout(function() {
+                fn();
+                exponentialTimeout *= 2;
+            }, exponentialTimeout)
         }
     }
 })();
