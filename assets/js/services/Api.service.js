@@ -4,8 +4,8 @@
 
     var API_DOMAIN = 'http://localhost:1338';
 
-    ApiService.$inject = ['$http'];
-    function ApiService($http) {
+    ApiService.$inject = ['$http', '$timeout', 'ModalService'];
+    function ApiService($http, $timeout, ModalService) {
         var self = this;
 
         // ARTICLES
@@ -81,11 +81,24 @@
                 password: data.password
             }
             
-            $http.put(API_DOMAIN+reqStr, reqObj)
-                .then(function (res, status, headers, config) {
-                    if(cb) cb(null, res.data);
-                })
-                .catch(cb);
+            function doReq() {
+                $http.put(API_DOMAIN+reqStr, reqObj)
+                    .then(function (res, status, headers, config) {
+                        ModalService.hideConnectionModal();
+                        if(cb) cb(null, res.data);
+                    })
+                    .catch(function(err) {
+                        if(err.status == -1) {
+                            ModalService.showConnectionModal();
+                            $timeout(function() {
+                                doReq();
+                            }, 2000)
+                        } else {
+                            cb(err);
+                        }
+                    });
+            }
+            doReq();
         };
 
         this.logout = function (data, cb) {

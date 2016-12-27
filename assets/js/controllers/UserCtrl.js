@@ -7,15 +7,21 @@
 		$scope.ctr = {
 			email: null,
 			password: null,
+
+			error: null
 		}
 
 		$scope.login = function() {
+			$scope.ctr.error = null;
 			var reqObj = {
 				email: $scope.ctr.email,
 				password: $scope.ctr.password,
 			}
 			UserService.login(reqObj, function(err, res) {
 				if(err) {
+					if(err.status == 401) {
+						$scope.ctr.error = 'Invalid email or password';
+					}
 					return console.error(err);
 				}
 				$state.go('app.news');

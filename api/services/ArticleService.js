@@ -46,8 +46,6 @@ module.exports = {
               mapps.map(function(tagged) {
                 articleIds.push(tagged.article);
               })
-
-          console.log('articleIds', articleIds)
               cb(null, sources, articleIds);
           }, function(err) {
               sails.log.debug('Some error occured ' + err);
