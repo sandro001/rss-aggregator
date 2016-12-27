@@ -20,7 +20,7 @@
 <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
 
   <!-- Sidebar -->
-  <div id="sidebar-wrapper" ng-controller="SidebarCtrl">
+  <div id="sidebar-wrapper">
     <ul class="sidebar">
       <li class="sidebar-main">
         <a ng-click="toggleSidebar()">
@@ -30,10 +30,7 @@
       </li>
       <li class="sidebar-title"><span>PERSONAL FEEDS</span></li>
       <li class="sidebar-list">
-        <a ui-sref="app.news">News <span class="menu-icon fa fa-bars" aria-hidden="true"></span></a>
-      </li>
-      <li class="sidebar-list">
-        <a ui-sref="app.sources">Sources <span class="menu-icon fa fa-bars" aria-hidden="true"></span></a>
+        <a href="#">All <span class="menu-icon fa fa-bars" aria-hidden="true"></span></a>
       </li>
 
       <li class="sidebar-tags">
@@ -41,13 +38,59 @@
             <!--Tags in item of news-->
             <div class="tagSet">
 
-            <span ng-show="$root.authorized && ctr.userTags.length == 0">
-              Add some tags to articles to see them here and filter quickly
-            </span>
               <!--Single tag-->
-              <div class="tag" ng-repeat="tag in ctr.userTags">
+              <div class="tag">
                 <div class="tagContent">
-                  <a href="#">{{tag.name}}</a>
+                  <a href="#">#пуся</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#Одуваньчик</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i></sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#цем</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#Мурчик</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#котик</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i></sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#зіронька</a>
+                  <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
+                </div>
+              </div> <!-- End tag-->
+
+              <!--Single tag-->
+              <div class="tag">
+                <div class="tagContent">
+                  <a href="#">#милаш</a>
                   <sup><i class="fa fa-times" aria-hidden="true"></i> </sup>
                 </div>
               </div> <!-- End tag-->
@@ -221,7 +264,6 @@
 
 <script src="/js/controllers/NewsCtrl.js"></script>
 <script src="/js/controllers/HeaderCtrl.js"></script>
-<script src="/js/controllers/SidebarCtrl.js"></script>
 <script src="/js/services/Api.service.js"></script>
 <script src="/js/services/User.service.js"></script>
 </body>

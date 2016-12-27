@@ -66,6 +66,7 @@ module.exports = {
         if(articleIds && articleIds.length != 0) {
           reqObj['id'] = articleIds;
         }
+        reqObj['sort'] = 'publication_date DESC'
         Article.find(reqObj)
           .exec(function(err, articles) {
             if (err) {

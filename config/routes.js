@@ -55,7 +55,8 @@ module.exports.routes = {
   'PUT /api/article/set_latest': 'ArticlesController.set_latest',
   'PUT /api/article/test': 'ArticlesController.test',
 
-  'PUT /api/tags': 'TagsController.create'
+  'PUT /api/tags': 'TagsController.create',
+  'POST /api/tags/my': 'TagsController.my_tags'
 
 
    /*

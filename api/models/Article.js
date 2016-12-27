@@ -6,7 +6,7 @@ module.exports = {
     },
 
     description: {
-      type: 'STRING'
+      type: 'TEXT'
     },
 
     link: {
