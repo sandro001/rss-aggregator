@@ -2,7 +2,7 @@
     'use strict';
     angular.module('App').service('ApiService', ApiService);
 
-    var API_DOMAIN = 'http://localhost:1338';
+    var API_DOMAIN = 'http://localhost:1337';
 
     ApiService.$inject = ['$http', '$timeout', 'ModalService'];
     function ApiService($http, $timeout, ModalService) {
